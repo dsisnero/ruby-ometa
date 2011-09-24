@@ -237,19 +237,19 @@ class OMetaCore
   end
 
   def _xnot
-    oldInput = @input.copy
-    begin
-      yield
-    rescue Fail
-      @input = oldInput
-      return true
-    end
-    raise Fail
+		return _xlookahead(true){yield}
   end
 
-  def _xlookahead
+  def _xlookahead(neg=false)
     oldInput = @input.copy
-    r = yield
+		failed=false
+		begin
+	    r = yield
+		rescue Fail
+			failed=true
+		end
+		raise Fail if failed!=neg
+		r=true if neg
     @input = oldInput
     r
   end
