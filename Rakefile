@@ -1,4 +1,32 @@
 require "rake/testtask"
+require 'hoe'
+
+Hoe.plugin :bundler
+
+Hoe.spec 'ruby-ometa' do
+  developer('Dominic Sisneros', 'dsisnero@gmail.com')
+  dependency('hoe-bundler', '> 0.0.0', :dev)
+  dependency('rspec', '> 0.0.0', :dev)
+  dependency('ZenTest', '> 0.0.0', :dev)
+  dependency('cucumber', '> 0.0.0', :dev)
+  dependency('monadic', '>0.0.0')
+
+  ##
+  # Optional: Extra files you want to add to RDoc.
+  #
+  # .txt files are automatically included (excluding the obvious).
+
+  # extra_rdoc_files
+
+  ##
+  # Optional: The filename for the project history. [default: History.txt]
+
+  # history_file
+
+
+  # self.rubyforge_name = 'ruby-ometa' # if different than 'ruby-ometa'
+end
+
 
 $:.unshift 'lib'
 require 'ometa'
@@ -49,10 +77,10 @@ task :bench do
   puts "1 bootstraps took #{Time.now - t} seconds"
 end
 
-Rake::TestTask.new do |t|
-  t.libs = %w(test lib)
-  t.test_files = FileList["test/test_*.rb"]
-  t.verbose = true
-end
+# Rake::TestTask.new do |t|
+#   t.libs = %w(test lib)
+#   t.test_files = FileList["test/test_*.rb"]
+#   t.verbose = true
+# end
 
-task :default => :test
+# task :default => :test
