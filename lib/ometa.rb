@@ -3,6 +3,8 @@ require 'ometa/bootstrap'
 require 'ometa/bootstrapper'
 require 'ometa/leterize'
 class OMeta
+
+  VERSION = '0.0.1'
   GRAMMAR_FILES = %w(ometa null_opt andor_opt ometa_opt bsruby_parser
     bsruby_translator ometa_parser ometa_translator)
 
